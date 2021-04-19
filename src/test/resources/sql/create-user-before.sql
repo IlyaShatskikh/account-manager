@@ -1,0 +1,1 @@
+insert into usr(id, username, password, email) values (2, 'user2', 'password2', 'user2@email.com');
