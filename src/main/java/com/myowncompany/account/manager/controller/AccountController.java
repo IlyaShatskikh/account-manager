@@ -15,7 +15,7 @@ import java.util.List;
 public class AccountController {
     private final AccountService accountService;
 
-    @PutMapping("/{user_id}/account/add")
+    @PostMapping("/{user_id}/account/add")
     public Account addAccount(@PathVariable(name = "user_id") Long userId, @RequestParam(name = "iban") String iban) {
         return accountService.addAccount(userId, iban);
     }

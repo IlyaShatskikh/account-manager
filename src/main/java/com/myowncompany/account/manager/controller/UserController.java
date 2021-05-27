@@ -13,7 +13,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @PutMapping("/add")
+    @PostMapping("/add")
     public User addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
