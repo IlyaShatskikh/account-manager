@@ -10,7 +10,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -31,7 +31,7 @@ public class UserIntegrationTest {
                 }
                 """;
 
-        mockMvc.perform(put("/account-manager/user/add")
+        mockMvc.perform(post("/account-manager/user/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(user))
                 .andExpect(status().isOk());

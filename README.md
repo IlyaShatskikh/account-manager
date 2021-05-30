@@ -20,6 +20,7 @@ Frameworks:
 - swagger ui 
 - postgresql 10
 - docker compose
+- apache cxf
 
 Using:
 <br/>$ git clone ... - clone git repo

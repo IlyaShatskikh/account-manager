@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="http://manager.account.myowncompany.com/wsdl/"
+             xmlns:tns="http://manager.account.myowncompany.com/wsdl/"
+             xmlns:am="http://manager.account.myowncompany.com/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://manager.account.myowncompany.com/" schemaLocation="../xsd/account-manager.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="GetAllUserAccountsRequest">
+        <part name="requestData" element="am:GetAllUserAccountsRequest"/>
+    </message>
+    <message name="GetAllUserAccountsResponse">
+        <part name="responseData" element="am:GetAllUserAccountsResponse"/>
+    </message>
+    <message name="AccountManagerFault">
+        <part name="faultData" element="am:AccountManagerFault"/>
+    </message>
+
+    <portType name="UserAccountsPort">
+        <operation name="GetUserAccounts">
+            <input message="tns:GetAllUserAccountsRequest"/>
+            <output message="tns:GetAllUserAccountsResponse"/>
+            <fault message="tns:AccountManagerFault" name="AccountManagerFault"/>
+        </operation>
+    </portType>
+
+    <binding name="UserAccountsServiceBinding" type="tns:UserAccountsServiceBindingType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="GetUserAccounts">
+            <soap:operation soapAction="http://manager.account.myowncompany.com/account-manager#UserAccounts" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="AccountManagerFault">
+                <soap:fault name="AccountManagerFault"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="AccountManagerService">
+        <port name="UserAccountsPort" binding="tns:UserAccountsServiceBinding">
+            <soap:address location="http://localhost:8081/ws/account-manager/account"/>
+        </port>
+    </service>
+</definitions>
